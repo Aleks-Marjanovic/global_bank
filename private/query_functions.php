@@ -15,7 +15,9 @@
     $sql .= "WHERE id='" . db_escape($db, $id) . "'";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
-    return $result;
+    $subject = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return $subject;
   }
 
   function validate_subject($subject) {
@@ -79,7 +81,7 @@
     }
 
     $sql = "UPDATE subjects SET ";
-    $sql .= "menu_name='" . db_escape($db,$subject['menu_name']) . "', ";
+    $sql .= "menu_name='" . db_escape($db, $subject['menu_name']) . "', ";
     $sql .= "position='" . db_escape($db, $subject['position']) . "', ";
     $sql .= "visible='" . db_escape($db, $subject['visible']) . "' ";
     $sql .= "WHERE id='" . db_escape($db, $subject['id']) . "' ";
@@ -117,9 +119,7 @@
     $sql .= "ORDER BY subject_id ASC, position ASC";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
-    $subject = mysqli_fetch_assoc($result);
-    mysqli_free_result($result);
-    return $subject;
+    return $result;
   }
 
   function find_page_by_id($id) {
