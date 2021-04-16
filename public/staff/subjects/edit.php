@@ -16,7 +16,7 @@ if(is_post_request()) {
   $subject['visible'] = $_POST['visible'] ?? '';
 
   $result = update_subject($subject);
-  if($result === true) {
+  if($result == true) {
     redirect_to(url_for('/staff/subjects/show.php?id=' . $id));
   } else {
     $errors = $result;

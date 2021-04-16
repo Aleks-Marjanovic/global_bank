@@ -1,7 +1,7 @@
 <?php
 
   function is_blank($value) {
-    return !isset($value) || trim($value) === '';
+    return !isset($value) || trim($value) == '';
   }
 
   function has_presence($value) {
@@ -49,7 +49,7 @@
 
   function has_valid_email_format($value) {
     $email_regex = '/\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\Z/i';
-    return preg_match($email_regex, $value) === 1;
+    return preg_match($email_regex, $value) == 1;
   }
 
   function has_unique_page_menu_name($menu_name, $current_id="0") {
@@ -63,7 +63,7 @@
     $page_count = mysqli_num_rows($page_set);
     mysqli_free_result($page_set);
 
-    return $page_count === 0;
+    return $page_count == 0;
   }
 
 ?>
